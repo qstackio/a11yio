@@ -1,0 +1,27 @@
+{
+  "name": "qstack-arc",
+  "version": "1.0.0",
+  "description": "QstackIO accessibility solutions",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "accessibility",
+    "axe",
+    "a11y",
+    "pa11y",
+    "disability",
+    "arc"
+  ],
+  "author": "Thulasiram Siripireddy",
+  "license": "ISC",
+  "dependencies": {
+    "accessible-nprogress": "^2.1.0",
+    "bootstrap": "^5.0.1",
+    "express": "^4.17.1",
+    "jquery": "^3.6.0",
+    "pa11y": "^6.0.0",
+    "pa11y-reporter-html": "^2.0.0"
+  }
+}

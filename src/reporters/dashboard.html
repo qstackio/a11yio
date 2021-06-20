@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <style>
+        .pills,
+        .pillspage {
+            border: 5px solid #424242
+        }
+        
+        body {
+            background-color: #424242;
+            font-family: Roboto, sans-serif
+        }
+        
+        .header {
+            color: #ffc400;
+            text-align: center;
+            margin: 20px
+        }
+        
+        .pills {
+            padding: 35px 5px
+        }
+        
+        .pillspage {
+            padding: 15px 5px
+        }
+        
+        .specs {
+            font-size: 10px!important
+        }
+        
+        .time {
+            margin-bottom: 10px!important
+        }
+        
+        .pagespechold {
+            padding-top: 12px
+        }
+        
+        .pagespec {
+            border: 2px solid #6c757d;
+            padding: 8px 5px;
+            font-size: 18px
+        }
+        
+        .viewreport {
+            padding-top: 10px
+        }
+        
+        hr {
+            margin-top: 0!important;
+            margin-bottom: .5em!important
+        }
+        
+        .btncollapse {
+            padding: 5px
+        }
+        
+        .alert {
+            margin: 5px!important
+        }
+        
+        .alert,
+        .badge,
+        .btn,
+        .card {
+            border-radius: 0!important
+        }
+        
+        .footer {
+            min-height: 60px
+        }
+    </style>
+    <title>PK-ARC Report</title>
+</head>
+
+<body>
+    <h1 class="header"><i class="fas fa-universal-access"></i> PK Accessibility Report</h1>
+    <div class="container">
+        <br>
+        <h3 class="text-white text-center"><i class="fas fa-chart-pie text-info"></i> Dashboard</h3>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-6 pills badge badge-primary">
+                        <div class="section">
+                            <h6>Number of URL's</h6>
+                            <h1>7</h1>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 pills badge badge-danger">
+                        <div class="section">
+                            <h6>Errors</h6>
+                            <h1>141</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 pills badge badge-warning">
+                        <div class="section">
+                            <h6>Warnings</h6>
+                            <h1>317</h1>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 pills badge badge-info">
+                        <div class="section ">
+                            <h6>Notices</h6>
+                            <h1>1,539</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="row justify-content-md-center">
+                    <div class="col-sm">
+                        <canvas id="myChart" width="400" height="250"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div> <br>
+        <h3 class="text-white text-center">Page Statistics</h3>
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <h6 class="text-info text-truncate"><i class="fas fa-external-link-alt text-warning"></i><span class="text-warning"> Url</span> : "{{pageUrl}}"</h6>
+                <hr/>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <h6 class="text-info"><i class="fas fa-list-ul text-warning"></i><span class="text-warning"> Standard</span> : WCAG2AA</h6>
+                <hr/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <h6 class="text-info">
+                    <i class="far fa-credit-card text-warning"></i><span class="text-warning"> Browser</span> : Chrome 91.0.4472.77</h6>
+                <hr/>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <h6 class="text-info"><i class="fas fa-arrows-alt text-warning"></i><span class="text-warning"> Browser size</span> : 1792 X 905</h6>
+                <hr/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <h6 class="text-info"><i class="far fa-window-restore text-warning"></i><span class="text-warning"> Device</span> : Laptop/Desktop</h6>
+                <hr/>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <h6 class="text-info"><i class="fas fa-clock text-warning"></i><span class="text-warning"> Timestamp</span> : {{date}}</h6>
+                <hr/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 pillspage badge badge-danger">
+                <div class="section">
+                    <h6>Errors</h6>
+                    <h1> {{errorCount}}</h1>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 pillspage badge badge-warning">
+                <div class="section">
+                    <h6>Warnings</h6>
+                    <h1> {{warningCount}}</h1>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 pillspage badge badge-info">
+                <div class="section ">
+                    <h6>Notices</h6>
+                    <h1> {{noticeCount}}</h1>
+                </div>
+            </div>
+        </div> <br>
+        <h3 class="text-white text-center">Issues - Details</h3>
+        <div class="row justify-content-start">
+            <div class="col-xs-4 btncollapse">
+                <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#collapseErrors" aria-expanded="true" aria-controls="collapseErrors">
+                Errors <span class="badge badge-light">{{errorCount}}</span>
+            </button>
+            </div>
+            <div class="col-xs-4 btncollapse">
+                <button type="button" class="btn btn-warning" data-toggle="collapse" data-target="#collapseWarnings" aria-expanded="false" aria-controls="collapseWarnings">
+                Warnings <span class="badge badge-light">{{warningCount}}</span>
+            </button>
+            </div>
+            <div class="col-xs-4 btncollapse">
+                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#collapseNotices" aria-expanded="false" aria-controls="collapseNotices">
+                Notices <span class="badge badge-light">{{noticeCount}}</span>
+            </button>
+            </div>
+        </div>
+        <div class="row" id="issues">
+            <div class="col collapse show btncollapse" data-parent="#issues" id="collapseErrors">
+                <div class="card bg-danger">
+                    {{#issues}}
+                    <div class="alert alert-danger btncollapse" role="alert">
+                        <div><strong>Code(s) : </strong>{{code}}</div>
+                        <hr/>
+                        <div><strong>Message : </strong> {{typeLabel}}: {{message}}</div>
+                        <hr/>
+                        <div><strong>Element : </strong> {{context}} (select with "{{selector}}")</div>
+                    </div>
+                    {{/issues}}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="footer"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="footer"></div>
+        </div>
+    </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+    <script>
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var barChartData = {
+            labels: ['Errors', 'Warnings', 'Notices'],
+            datasets: [{
+                label: 'Errors',
+                backgroundColor: '#dc3545',
+                data: [30, 37, 5, 3, 26, 3, 37, ]
+            }, {
+                label: 'Warnings',
+                backgroundColor: '#ffc107',
+                data: [warningCount]
+            }, {
+                label: 'Notices',
+                backgroundColor: '#17a2b8',
+                data: [noticeCount]
+            }]
+
+        };
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                    callbacks: {
+                        title: function(tooltipItems, data) {
+                            var idx = tooltipItems[0].index;
+                            return data.labels[idx];
+                        }
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            callback: function(value) {
+                                return value.substr(0, 10);
+                            },
+                            beginAtZero: true
+                        },
+                        stacked: true
+                    }],
+                    yAxes: [{
+                        stacked: true
+                    }]
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
